@@ -19,14 +19,18 @@ for file in fileset:
     fcnt += 1
     indptr = np.fromfile(base_path + file.stem + ".indptr", dtype=np.int32)
     indices = np.fromfile(base_path + file.stem + ".indices", dtype=np.int32)
+    
     v_num = len(indptr) - 1
     e_num = len(indices)
     vals = np.ones(e_num)
     csr = csr_matrix((vals, indices, indptr))
-    warp_row = []
-    warp_loc = []
-    warp_len = []
-    cur_loc = 0
+
+    ## Warp-Level Partition
+    warp_row = []  # stores the (row) vertex index for each warp
+    warp_loc = []  # stores the starting location of each warp int the indicies array
+    warp_len = []  # stores the lengh of each warp
+    cur_loc = 0  # tracks the current location in the indices array
+
     for i in range(v_num):
         cur_degree = indptr[i+1] - indptr[i]
         if cur_degree == 0:
