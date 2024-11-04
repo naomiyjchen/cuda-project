@@ -5,7 +5,14 @@ set(CMAKE_CUDA_ARCHITECTURES 80)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CUDA_STANDARD 17)
 
-add_executable(${PROJECT_NAME} main.cu spmm_maxk.cu spmm_maxk_backward.cu spmm_cusparse.cu)
+# Define DEBUG to enable TRACE
+# Use with cmake -DCMAKE_BUILD_TYPE=Debug ..
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DDEBUG)
+endif()
+
+
+add_executable(${PROJECT_NAME} main.cu)
 
 # add_executable(${PROJECT_NAME} maxk_kernel.cu)
 
