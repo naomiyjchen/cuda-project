@@ -12,7 +12,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 
-add_executable(${PROJECT_NAME} main.cu)
+add_executable(${PROJECT_NAME} main.cu spmm_maxk.cu)
 
 # add_executable(${PROJECT_NAME} maxk_kernel.cu)
 
