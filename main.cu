@@ -3,6 +3,7 @@
 #include <random>
 #include "data.h"
 #include "spmm_maxk.h"
+#include "trace.h"
 
 string BASE_DIR = "../graphs/";
 
@@ -11,13 +12,6 @@ using namespace std;
 #define DIM_MUL_N 1
 #define DIM_MUL(x) ((x + DIM_MUL_N - 1) / DIM_MUL_N) * DIM_MUL_N
 
-// Define the TRACE macro
-#ifdef DEBUG
-    #define TRACE(msg) \
-            std::cerr << "[TRACE] " << __FILE__ << ":" << __LINE__ << " (" << __func__ << ") - " << msg << std::endl;
-#else
-    #define TRACE(msg) // No operation
-#endif
 
 
 void test_graph(string graph) {
